@@ -2,7 +2,7 @@ require "base64"
 
 def usage
   if ARGV.length < 2
-    puts "tutorial: enc_dec_diamond.rb key <enc/dec> plaintext ciphertext";
+    puts "usage : enc_dec_diamond.rb key enc/dec plain.txt cipher.txt";
     exit;
   end
 end
@@ -28,18 +28,16 @@ def dataEncDec(data, key)
   return data;
 end
 
-password = "i_have_3_holes";
-
 usage();
 
   data = readFile;
-  if ARGV[1] == "enc"
+  if ARGV[1] == "enc" #encrypting file
     data = dataEncDec(data, ARGV[0]);
     data = Base64.encode64(data);
     puts "#{data}";
-  elsif ARGV[1] == "dec"
+  elsif ARGV[1] == "dec" #decrypting file
     data = Base64.decode64(data);
     data = dataEncDec(data, ARGV[0]);
     puts "#{data}";
   end
-	writeFile(data);
+    writeFile(data);
